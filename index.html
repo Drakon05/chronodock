@@ -68,20 +68,32 @@
             <span class="lens-meta-model" id="lens-watch-model">GA-2100 Octagonal Series</span>
           </div>
 
-          <div class="lens-mode-switch" role="group" aria-label="Toggle optical magnifying lens">
-            <button type="button" class="lens-toggle-pill is-active" id="lens-on-btn" aria-pressed="true">
-              <span class="lens-toggle-dot" aria-hidden="true"></span>
-              <span>With Lens · 3×</span>
+          <div class="lens-top-controls">
+            <!-- Dial Light Switch -->
+            <button type="button" class="lens-light-btn" id="lens-light-btn" aria-pressed="false" aria-label="Toggle watch dial light">
+              <svg class="lens-light-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              </svg>
+              <span id="lens-light-label">Dial Light: OFF</span>
             </button>
-            <button type="button" class="lens-toggle-pill" id="lens-off-btn" aria-pressed="false">
-              <span>Without Lens · 1×</span>
-            </button>
+
+            <!-- Lens Mode Switch -->
+            <div class="lens-mode-switch" role="group" aria-label="Toggle optical magnifying lens">
+              <button type="button" class="lens-toggle-pill is-active" id="lens-on-btn" aria-pressed="true">
+                <span class="lens-toggle-dot" aria-hidden="true"></span>
+                <span>With Lens · 3×</span>
+              </button>
+              <button type="button" class="lens-toggle-pill" id="lens-off-btn" aria-pressed="false">
+                <span>Without Lens · 1×</span>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Center Stage: Pure black except where the watch sits under the lens -->
         <div class="lens-center-stage" id="lens-center-stage">
-          <div class="lens-center-spotlight" aria-hidden="true"></div>
+          <div class="lens-center-spotlight" id="lens-center-spotlight" aria-hidden="true"></div>
 
           <!-- 1x Regular Size Watch Layer (behind the lens; fully visible when lens is switched off) -->
           <div class="lens-watch-1x-viewport" id="lens-watch-1x-viewport" aria-live="polite">
@@ -107,7 +119,7 @@
                 <filter id="glass-filter-chronodock" color-interpolation-filters="sRGB" x="-10%" y="-10%" width="120%" height="120%">
                   <feImage id="glass-fe-image" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map" />
 
-                  <feDisplacementMap id="glass-red-channel" in="SourceGraphic" in2="map" scale="-240" xChannelSelector="R" yChannelSelector="G" result="dispRed" />
+                  <feDisplacementMap id="glass-red-channel" in="SourceGraphic" in2="map" scale="-55" xChannelSelector="R" yChannelSelector="G" result="dispRed" />
                   <feColorMatrix
                     in="dispRed"
                     type="matrix"
@@ -118,7 +130,7 @@
                     result="red"
                   />
 
-                  <feDisplacementMap id="glass-green-channel" in="SourceGraphic" in2="map" scale="-230" xChannelSelector="R" yChannelSelector="G" result="dispGreen" />
+                  <feDisplacementMap id="glass-green-channel" in="SourceGraphic" in2="map" scale="-51" xChannelSelector="R" yChannelSelector="G" result="dispGreen" />
                   <feColorMatrix
                     in="dispGreen"
                     type="matrix"
@@ -129,7 +141,7 @@
                     result="green"
                   />
 
-                  <feDisplacementMap id="glass-blue-channel" in="SourceGraphic" in2="map" scale="-220" xChannelSelector="R" yChannelSelector="G" result="dispBlue" />
+                  <feDisplacementMap id="glass-blue-channel" in="SourceGraphic" in2="map" scale="-47" xChannelSelector="R" yChannelSelector="G" result="dispBlue" />
                   <feColorMatrix
                     in="dispBlue"
                     type="matrix"
@@ -142,7 +154,7 @@
 
                   <feBlend in="red" in2="green" mode="screen" result="rg" />
                   <feBlend in="rg" in2="blue" mode="screen" result="output" />
-                  <feGaussianBlur id="glass-gaussian-blur" in="output" stdDeviation="0.5" />
+                  <feGaussianBlur id="glass-gaussian-blur" in="output" stdDeviation="0.2" />
                 </filter>
               </defs>
             </svg>
@@ -161,7 +173,6 @@
                   height="600"
                 >
               </div>
-              <span class="lens-optical-badge" id="lens-optical-badge">3.0× OPTICAL DOME</span>
             </div>
 
             <span class="glass-surface__frame" aria-hidden="true"></span>

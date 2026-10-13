@@ -2404,6 +2404,91 @@ textarea {
   color: #8E8477;
 }
 
+/* Top HUD bar */
+.lens-top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 5;
+}
+
+.lens-watch-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-spec);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A89E90;
+  background: rgba(18, 16, 14, 0.78);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+
+.lens-meta-index {
+  color: var(--cd-sand);
+  font-weight: 500;
+}
+
+.lens-meta-brand {
+  color: #F5F1E9;
+  font-weight: 600;
+}
+
+.lens-meta-model {
+  color: #8E8477;
+}
+
+.lens-top-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Dial Light switch */
+.lens-light-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(18, 16, 14, 0.9);
+  color: #A89E90;
+  font-family: var(--font-spec);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.lens-light-btn:hover {
+  color: #F5F1E9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.lens-light-btn.is-active {
+  background: rgba(201, 164, 119, 0.22);
+  color: #F5F1E9;
+  box-shadow: 0 0 16px rgba(217, 184, 140, 0.2);
+}
+
+.lens-light-btn.is-active .lens-light-icon {
+  color: var(--cd-sand);
+  filter: drop-shadow(0 0 6px rgba(217, 184, 140, 0.85));
+}
+
 /* With / Without Lens toggle */
 .lens-mode-switch {
   display: inline-flex;
@@ -2478,7 +2563,10 @@ textarea {
   );
   pointer-events: none;
   z-index: 0;
-  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease;
+  transition:
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.38s ease,
+    opacity 0.38s ease;
 }
 
 .lens-showcase-section.is-lens-off .lens-center-spotlight {
@@ -2486,11 +2574,23 @@ textarea {
   opacity: 0.85;
 }
 
-/* 1x Regular Size Watch (168px x 202px) */
+/* When light is turned on: brighten center spotlight */
+.lens-showcase-section.is-light-on .lens-center-spotlight {
+  background: radial-gradient(
+    circle,
+    rgba(255, 238, 210, 0.32) 0%,
+    rgba(201, 164, 119, 0.14) 38%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+/* 1x Regular Size Watch (136px x 163px centered) */
 .lens-watch-1x-viewport {
   position: relative;
-  width: 168px;
-  height: 202px;
+  width: 150px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2500,7 +2600,7 @@ textarea {
     filter 0.36s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 0.24;
-  filter: blur(1.5px) brightness(0.7);
+  filter: blur(1.5px) brightness(0.65);
 }
 
 .lens-showcase-section.is-lens-off .lens-watch-1x-viewport {
@@ -2509,13 +2609,16 @@ textarea {
 }
 
 .lens-watch-1x-img {
-  width: 168px;
-  height: 202px;
+  width: 136px;
+  height: 163px;
   object-fit: contain;
+  margin: auto;
   user-select: none;
   -webkit-user-drag: none;
+  filter: brightness(0.65) contrast(1.12); /* default darker by reducing exposure */
   transition:
     opacity 0.28s ease,
+    filter 0.35s ease,
     transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2527,8 +2630,8 @@ textarea {
   border-radius: 222px;
   z-index: 3;
   cursor: grab;
-  --glass-frost: 0.08;
-  --glass-saturation: 1.16;
+  --glass-frost: 0.05;
+  --glass-saturation: 1.08;
   --filter-id: url(#glass-filter-chronodock);
 }
 
@@ -2542,7 +2645,7 @@ textarea {
   pointer-events: none;
 }
 
-/* 3x Magnified Watch inside the GlassSurface Dome (168px * 3 = 504px, 202px * 3 = 606px) */
+/* 3x Magnified Watch inside the GlassSurface Dome — centered cleanly inside calm zone */
 .lens-watch-3x-viewport {
   position: relative;
   width: 100%;
@@ -2554,7 +2657,7 @@ textarea {
   overflow: hidden;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(34, 29, 24, 0.72) 0%,
+    rgba(28, 24, 20, 0.72) 0%,
     rgba(14, 12, 10, 0.92) 58%,
     rgba(0, 0, 0, 0.98) 100%
   );
@@ -2562,41 +2665,32 @@ textarea {
 }
 
 .lens-watch-3x-img {
-  width: 504px;
-  height: 606px;
-  max-width: none;
+  width: 326px;
+  height: 391px;
+  max-width: 76%;
+  max-height: 76%;
   object-fit: contain;
+  margin: auto;
   user-select: none;
   -webkit-user-drag: none;
-  filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.85)) contrast(1.04) saturate(1.06);
+  filter: brightness(0.65) contrast(1.12) drop-shadow(0 20px 36px rgba(0, 0, 0, 0.85)); /* default darker by reducing exposure */
   transition:
     opacity 0.28s ease,
+    filter 0.35s ease,
     transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
+  will-change: transform, opacity, filter;
+}
+
+/* Light ON: returns image to normal bright exposure */
+.lens-showcase-section.is-light-on .lens-watch-3x-img,
+.lens-showcase-section.is-light-on .lens-watch-1x-img {
+  filter: brightness(1.02) contrast(1.0) drop-shadow(0 0 20px rgba(217, 184, 140, 0.28));
 }
 
 .lens-watch-1x-img.is-switching,
 .lens-watch-3x-img.is-switching {
   opacity: 0;
   transform: scale(0.92);
-}
-
-.lens-optical-badge {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(10, 9, 8, 0.76);
-  border: none;
-  color: var(--cd-sand);
-  font-family: var(--font-spec);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  pointer-events: none;
-  z-index: 4;
 }
 
 /* Bottom Pill-Shaped Brand Logo Navigation */

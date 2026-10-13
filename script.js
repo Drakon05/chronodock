@@ -1387,20 +1387,20 @@
       preload.src = item.src;
     });
 
-    // React Bits <GlassSurface /> props configuration
+    // React Bits <GlassSurface /> props configuration — refined for crystal-clear dial with subtle convex rim
     const glassConfig = {
       borderRadius: 222,
-      borderWidth: 0.11,
+      borderWidth: 0.05,
       brightness: 50,
       opacity: 0.93,
-      blur: 11,
-      displace: 0.5,
-      backgroundOpacity: 0.08,
-      saturation: 1.16,
-      distortionScale: -240,
+      blur: 8,
+      displace: 0.2,
+      backgroundOpacity: 0.05,
+      saturation: 1.08,
+      distortionScale: -55,
       redOffset: 0,
-      greenOffset: 10,
-      blueOffset: 20,
+      greenOffset: 4,
+      blueOffset: 8,
       xChannel: 'R',
       yChannel: 'G',
       mixBlendMode: 'difference',
@@ -1471,14 +1471,35 @@
       window.addEventListener('resize', updateDisplacementMap);
     }
 
-    // Subtle interactive pointer pan inside the 3x GlassSurface dome
+    // Dial Light Toggle: Default is darker exposure; clicking returns exposure to normal
+    const lightBtn = document.getElementById('lens-light-btn');
+    const lightLabel = document.getElementById('lens-light-label');
+    let isLightOn = false;
+
+    function setLight(on) {
+      isLightOn = on;
+      section.classList.toggle('is-light-on', isLightOn);
+      if (lightBtn) {
+        lightBtn.classList.toggle('is-active', isLightOn);
+        lightBtn.setAttribute('aria-pressed', String(isLightOn));
+      }
+      if (lightLabel) {
+        lightLabel.textContent = isLightOn ? 'Dial Light: ON' : 'Dial Light: OFF';
+      }
+    }
+
+    if (lightBtn) {
+      lightBtn.addEventListener('click', () => setLight(!isLightOn));
+    }
+
+    // Gentle interactive pointer pan inside the 3x GlassSurface dome (kept within calm area)
     lensContainer.addEventListener('pointermove', (e) => {
       if (section.classList.contains('is-lens-off')) return;
       const rect = lensContainer.getBoundingClientRect();
       const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
       const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      const panX = Math.max(-1, Math.min(1, nx)) * -28;
-      const panY = Math.max(-1, Math.min(1, ny)) * -36;
+      const panX = Math.max(-1, Math.min(1, nx)) * -14;
+      const panY = Math.max(-1, Math.min(1, ny)) * -18;
       watch3xImg.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0)`;
     });
 
