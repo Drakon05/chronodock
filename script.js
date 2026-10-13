@@ -12,8 +12,8 @@
     standard: {
       id: 'standard',
       name: 'ChronoDock Standard',
-      price: 1999,
-      priceFormatted: '₹1,999',
+      price: 5000,
+      priceFormatted: '₹5,000',
       darkStage: false,
       description: 'Minimal single-watch dock in matte resin for everyday desk and bedside placement.',
       specs: {
@@ -74,8 +74,8 @@
     premium: {
       id: 'premium',
       name: 'ChronoDock Premium',
-      price: 4999,
-      priceFormatted: '₹4,999',
+      price: 10000,
+      priceFormatted: '₹10,000',
       darkStage: false,
       description: 'CNC-finished walnut body with a 65 mm optical chamber and warm grazing light.',
       specs: {
@@ -110,8 +110,8 @@
     grand: {
       id: 'grand',
       name: 'ChronoDock Grand Edition',
-      price: 12000,
-      priceFormatted: '₹12,000',
+      price: 20000,
+      priceFormatted: '₹20,000',
       darkStage: true,
       description: 'A 45° dual-mirror optical periscope showcase in dark wood, brass and glass.',
       specs: {
@@ -397,7 +397,7 @@
       tierKey: 'premium',
       title: 'ChronoDock Premium',
       finish: 'Natural Walnut',
-      price: 4999,
+      price: 10000,
       img: 'images/40.png',
       qty: 1,
     },
