@@ -1500,11 +1500,11 @@
       const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
       const panX = Math.max(-1, Math.min(1, nx)) * -14;
       const panY = Math.max(-1, Math.min(1, ny)) * -18;
-      watch3xImg.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0)`;
+      watch3xImg.style.transform = `translate(calc(-50% + ${panX.toFixed(1)}px), calc(-50% + ${panY.toFixed(1)}px))`;
     });
 
     lensContainer.addEventListener('pointerleave', () => {
-      watch3xImg.style.transform = 'translate3d(0, 0, 0)';
+      watch3xImg.style.transform = 'translate(-50%, -50%)';
     });
 
     // With Lens (3x) / Without Lens (1x) Toggle
@@ -1519,7 +1519,7 @@
         lensOffBtn.setAttribute('aria-pressed', String(!enabled));
       }
       if (!enabled) {
-        watch3xImg.style.transform = 'translate3d(0, 0, 0)';
+        watch3xImg.style.transform = 'translate(-50%, -50%)';
       }
     }
 

@@ -2645,39 +2645,41 @@ textarea {
   pointer-events: none;
 }
 
-/* 3x Magnified Watch inside the GlassSurface Dome — centered cleanly inside calm zone */
+/* 3x Magnified Watch inside the GlassSurface Dome — MAGNIFIES JUST THE DIAL */
 .lens-watch-3x-viewport {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: inherit;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(28, 24, 20, 0.72) 0%,
-    rgba(14, 12, 10, 0.92) 58%,
-    rgba(0, 0, 0, 0.98) 100%
+    rgba(24, 21, 18, 0.96) 0%,
+    rgba(12, 10, 8, 0.98) 64%,
+    rgba(0, 0, 0, 1) 100%
   );
-  filter: url(#glass-filter-chronodock);
 }
 
 .lens-watch-3x-img {
-  width: 326px;
-  height: 391px;
-  max-width: 76%;
-  max-height: 76%;
+  width: 680px;
+  height: 816px;
+  max-width: none;
+  max-height: none;
   object-fit: contain;
   margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   user-select: none;
   -webkit-user-drag: none;
   filter: brightness(0.65) contrast(1.12) drop-shadow(0 20px 36px rgba(0, 0, 0, 0.85)); /* default darker by reducing exposure */
   transition:
     opacity 0.28s ease,
-    filter 0.35s ease,
-    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    filter 0.35s ease;
   will-change: transform, opacity, filter;
 }
 
@@ -2886,8 +2888,8 @@ dialog {
   }
 
   .lens-watch-3x-img {
-    width: 372px;
-    height: 447px;
+    width: min(520px, 134vw);
+    height: min(624px, 160vw);
   }
 
   .brand-pill-item {
