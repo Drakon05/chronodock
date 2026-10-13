@@ -569,7 +569,7 @@
     const scratchCtx = scratch.getContext('2d');
     if (!ctx || !scratchCtx) return;
 
-    const LABEL_FONT = '10px "Libre Baskerville", Baskerville, Georgia, serif';
+    const LABEL_FONT = '10px "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
     const FALLOFF_STEPS = 8;
     const SPRING = 320;
     const DAMPING = 22;

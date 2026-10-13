@@ -22,9 +22,9 @@
   --cd-dark-surface: #181512;
 
   /* Typography */
-  --font-display: "Instrument Serif", "Libre Baskerville", "Baskerville", Georgia, serif;
-  --font-ui: "Libre Baskerville", "Baskerville", "Baskerville Old Face", "Hoefler Text", Georgia, serif;
-  --font-spec: "Libre Baskerville", "Baskerville", "Baskerville Old Face", "Hoefler Text", Georgia, serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-spec: "IBM Plex Mono", monospace;
 
   /* Layout & Spacing */
   --content-max: 1280px;
