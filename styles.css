@@ -13,18 +13,18 @@
   --cd-charcoal: #14120F;
   --cd-brass: #B88E52;
   --cd-stone: #A89E90;
-  --cd-line: #2F2923;
+  --cd-line: transparent;
   --cd-white: #1F1B17;
 
   /* Dark Surface Tokens */
-  --cd-dark-line: #2F2923;
+  --cd-dark-line: transparent;
   --cd-dark-muted: #BEB4A5;
   --cd-dark-surface: #181512;
 
   /* Typography */
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-spec: "IBM Plex Mono", monospace;
+  --font-display: "Instrument Serif", "Libre Baskerville", "Baskerville", Georgia, serif;
+  --font-ui: "Libre Baskerville", "Baskerville", "Baskerville Old Face", "Hoefler Text", Georgia, serif;
+  --font-spec: "Libre Baskerville", "Baskerville", "Baskerville Old Face", "Hoefler Text", Georgia, serif;
 
   /* Layout & Spacing */
   --content-max: 1280px;
@@ -33,7 +33,7 @@
   --gutter-mobile: 22px;
   --radius-card: 6px;
   --radius-control: 3px;
-  --border-width: 1px;
+  --border-width: 0px;
 
   /* Spacing Scale (4px base) */
   --sp-1: 4px;
@@ -115,14 +115,10 @@ textarea {
   color: inherit;
 }
 
-/* Accessible Focus States */
+/* Accessible Focus States — Outlines Removed */
+:focus,
 :focus-visible {
-  outline: 2px solid var(--cd-walnut);
-  outline-offset: 3px;
-}
-
-.section-dark :focus-visible {
-  outline-color: var(--cd-sand);
+  outline: none;
 }
 
 /* Inert State (Modern Web Guidance) */
@@ -2336,8 +2332,7 @@ textarea {
 }
 
 .glass-surface:focus-visible {
-  outline: 2px solid var(--cd-sand);
-  outline-offset: 4px;
+  outline: none;
 }
 
 /* Section 2: Pure Black Optical Lens Showcase */
@@ -2348,7 +2343,7 @@ textarea {
   background-color: #000000;
   color: #F5F1E9;
   color-scheme: dark;
-  border-bottom: 1px solid #1C1814;
+  border: none;
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -2390,7 +2385,7 @@ textarea {
   text-transform: uppercase;
   color: #A89E90;
   background: rgba(18, 16, 14, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: none;
   border-radius: 999px;
   padding: 8px 16px;
 }
@@ -2416,7 +2411,7 @@ textarea {
   gap: 4px;
   padding: 4px;
   background: rgba(18, 16, 14, 0.9);
-  border: 1px solid rgba(201, 164, 119, 0.28);
+  border: none;
   border-radius: 999px;
 }
 
@@ -2427,7 +2422,7 @@ textarea {
   min-height: 36px;
   padding: 6px 16px;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: none;
   background: transparent;
   color: #A89E90;
   font-family: var(--font-spec);
@@ -2438,8 +2433,7 @@ textarea {
   cursor: pointer;
   transition:
     background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color 0.2s ease;
 }
 
 .lens-toggle-pill:hover {
@@ -2448,7 +2442,6 @@ textarea {
 
 .lens-toggle-pill.is-active {
   background: rgba(201, 164, 119, 0.18);
-  border-color: rgba(201, 164, 119, 0.55);
   color: #F5F1E9;
 }
 
@@ -2596,7 +2589,7 @@ textarea {
   padding: 4px 12px;
   border-radius: 999px;
   background: rgba(10, 9, 8, 0.76);
-  border: 1px solid rgba(201, 164, 119, 0.35);
+  border: none;
   color: var(--cd-sand);
   font-family: var(--font-spec);
   font-size: 10px;
@@ -2621,11 +2614,9 @@ textarea {
   gap: 8px;
   padding: 7px 10px;
   background: rgba(17, 15, 13, 0.92);
-  border: 1px solid rgba(201, 164, 119, 0.26);
+  border: none;
   border-radius: 999px;
-  box-shadow:
-    0 14px 40px rgba(0, 0, 0, 0.85),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   max-width: 100%;
@@ -2650,13 +2641,12 @@ textarea {
   height: 44px;
   padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: none;
   background: transparent;
   color: #8E8477;
   cursor: pointer;
   transition:
     background-color 0.22s ease,
-    border-color 0.22s ease,
     color 0.22s ease,
     transform 0.2s ease;
   flex-shrink: 0;
@@ -2668,10 +2658,8 @@ textarea {
 }
 
 .brand-pill-item.is-active {
-  background: rgba(201, 164, 119, 0.16);
-  border-color: rgba(201, 164, 119, 0.55);
+  background: rgba(201, 164, 119, 0.18);
   color: #F5F1E9;
-  box-shadow: 0 0 18px rgba(201, 164, 119, 0.14) inset;
 }
 
 .brand-logo-svg {
@@ -2684,8 +2672,8 @@ textarea {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
   color: #A89E90;
   display: inline-flex;
   align-items: center;
@@ -2694,14 +2682,83 @@ textarea {
   flex-shrink: 0;
   transition:
     background-color 0.2s ease,
-    border-color 0.2s ease,
     color 0.2s ease;
 }
 
 .brand-pill-arrow:hover {
   color: #F5F1E9;
-  border-color: rgba(201, 164, 119, 0.5);
-  background: rgba(201, 164, 119, 0.12);
+  background: rgba(201, 164, 119, 0.16);
+}
+
+/* Global Borderless & Outlineless UI Enforcement */
+*,
+*::before,
+*::after,
+button,
+a,
+input,
+select,
+textarea,
+dialog {
+  outline: none !important;
+}
+
+.site-header,
+.section,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-light,
+.btn-outline-light,
+.cart-trigger,
+.mobile-menu-btn,
+.hero-image-frame,
+.hero-stage-bar,
+.stage-btn,
+.pillar-card,
+.pillar-visual,
+.product-card,
+.product-card.is-selected,
+.tier-tag,
+.configurator-shell,
+.config-gallery,
+.config-panel,
+.config-tier-tabs,
+.config-tier-tab,
+.thumb-btn,
+.swatch-btn,
+.swatch-btn::after,
+.spec-list,
+.spec-list div,
+.viewer-shell,
+.viewer-stage,
+.viewer-controls,
+.viewer-tab,
+.hotspot-pin,
+.hotspot-card,
+.grand-visual-card,
+.periscope-item,
+.material-card,
+.comparison-wrapper,
+.comparison-table,
+.comparison-table th,
+.comparison-table td,
+.founder-card,
+.faq-item,
+.site-footer,
+.footer-bottom,
+.reservation-dialog,
+.dialog-header,
+.dialog-close,
+.cart-item,
+.qty-btn,
+.reservation-form,
+.form-field input,
+.form-field select,
+.dialog-footer,
+.order-confirmation {
+  border: none !important;
+  outline: none !important;
 }
 
 @media (max-width: 768px) {
