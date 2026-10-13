@@ -4,22 +4,22 @@
    ========================================================================== */
 
 :root {
-  /* Colour System (from ChronoDock Design System) */
-  --cd-ivory: #F5F1E9;
-  --cd-bone: #E8DDCC;
-  --cd-sand: #C9A477;
-  --cd-walnut: #553B2E;
-  --cd-ink: #191714;
-  --cd-charcoal: #26231F;
-  --cd-brass: #A98049;
-  --cd-stone: #82776A;
-  --cd-line: #D4C8B7;
-  --cd-white: #FFFEFB;
+  /* Dark Theme Colour System (Warm Precision Gallery Dark) */
+  --cd-ivory: #110F0D;
+  --cd-bone: #181512;
+  --cd-sand: #D9B88C;
+  --cd-walnut: #C9A477;
+  --cd-ink: #F5F1E9;
+  --cd-charcoal: #14120F;
+  --cd-brass: #B88E52;
+  --cd-stone: #A89E90;
+  --cd-line: #2F2923;
+  --cd-white: #1F1B17;
 
   /* Dark Surface Tokens */
-  --cd-dark-line: #3A342D;
+  --cd-dark-line: #2F2923;
   --cd-dark-muted: #BEB4A5;
-  --cd-dark-surface: #201D19;
+  --cd-dark-surface: #181512;
 
   /* Typography */
   --font-display: "Instrument Serif", Georgia, serif;
@@ -192,14 +192,14 @@ textarea {
 }
 
 .section-dark {
-  background-color: var(--cd-ink);
-  color: var(--cd-ivory);
+  background-color: #0B0A09;
+  color: var(--cd-ink);
   border-top-color: var(--cd-dark-line);
 }
 
 .section-charcoal {
   background-color: var(--cd-charcoal);
-  color: var(--cd-ivory);
+  color: var(--cd-ink);
   border-top-color: var(--cd-dark-line);
 }
 
@@ -349,37 +349,40 @@ textarea {
 .btn-primary:hover {
   background-color: var(--cd-walnut);
   border-color: var(--cd-walnut);
+  color: #110F0D;
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--cd-ink);
-  border-color: var(--cd-ink);
+  border-color: var(--cd-line);
 }
 
 .btn-secondary:hover {
-  background-color: var(--cd-bone);
+  background-color: var(--cd-white);
+  border-color: var(--cd-ink);
 }
 
 .btn-light {
-  background-color: var(--cd-ivory);
-  color: var(--cd-ink);
-  border-color: var(--cd-ivory);
+  background-color: var(--cd-ink);
+  color: var(--cd-ivory);
+  border-color: var(--cd-ink);
 }
 
 .btn-light:hover {
   background-color: var(--cd-sand);
   border-color: var(--cd-sand);
+  color: #110F0D;
 }
 
 .btn-outline-light {
   background-color: transparent;
-  color: var(--cd-ivory);
+  color: var(--cd-ink);
   border-color: rgba(245, 241, 233, 0.35);
 }
 
 .btn-outline-light:hover {
-  border-color: var(--cd-ivory);
+  border-color: var(--cd-ink);
   background-color: rgba(245, 241, 233, 0.08);
 }
 
@@ -459,6 +462,7 @@ textarea {
   height: 34px;
   object-fit: contain;
   flex-shrink: 0;
+  filter: invert(1) brightness(0.95);
 }
 
 .site-footer .brand-mark {
@@ -1040,7 +1044,7 @@ textarea {
 }
 
 .product-card[data-tier="grand"] .product-card-media {
-  background-color: var(--cd-ink);
+  background-color: #0B0A09;
   padding: 0;
 }
 
@@ -1078,7 +1082,7 @@ textarea {
 }
 
 .product-card[data-tier="grand"] .tier-tag {
-  background-color: rgba(25, 23, 20, 0.88);
+  background-color: rgba(17, 15, 13, 0.9);
   color: var(--cd-sand);
   border-color: var(--cd-brass);
 }
@@ -1167,8 +1171,8 @@ textarea {
 }
 
 .config-gallery.is-dark-stage {
-  background-color: var(--cd-ink);
-  color: var(--cd-ivory);
+  background-color: #0B0A09;
+  color: var(--cd-ink);
 }
 
 .config-gallery-top {
@@ -1228,13 +1232,13 @@ textarea {
 
 .config-gallery.is-dark-stage .thumb-btn {
   background-color: var(--cd-charcoal);
-  color: var(--cd-ivory);
+  color: var(--cd-ink);
   border-color: var(--cd-dark-line);
 }
 
 .config-gallery.is-dark-stage .thumb-btn[aria-pressed="true"] {
   background-color: var(--cd-sand);
-  color: var(--cd-ink);
+  color: var(--cd-ivory);
   border-color: var(--cd-sand);
 }
 
@@ -1281,7 +1285,7 @@ textarea {
 }
 
 .tier-tab[aria-selected="true"] small {
-  color: var(--cd-sand);
+  color: #553B2E;
 }
 
 .finish-selector {

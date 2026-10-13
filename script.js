@@ -242,7 +242,7 @@
 
     if (configGalleryStage) {
       configGalleryStage.classList.toggle('is-dark-stage', Boolean(tier.darkStage));
-      configGalleryStage.style.backgroundColor = tier.darkStage ? 'var(--cd-ink)' : 'var(--cd-ivory)';
+      configGalleryStage.style.backgroundColor = tier.darkStage ? '#0B0A09' : 'var(--cd-bone)';
     }
 
     if (configSkuCode) configSkuCode.textContent = finish.sku;
@@ -581,8 +581,8 @@
       fontWeight: 700,
       fontSize: 150,
       letterSpacing: -0.05,
-      color: '#191714',
-      accentColor: '#553B2E',
+      color: '#F5F1E9',
+      accentColor: '#C9A477',
       reach: 200,
       softness: 0.7,
       dashLength: 4,
@@ -606,7 +606,7 @@
       let h = String(hex || '').replace('#', '');
       if (h.length === 3) h = h.replace(/./g, (c) => c + c);
       const n = parseInt(h.slice(0, 6), 16);
-      return Number.isNaN(n) ? [25, 23, 20] : [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+      return Number.isNaN(n) ? [245, 241, 233] : [(n >> 16) & 255, (n >> 8) & 255, n & 255];
     };
 
     const rgba = (hex, alpha) => {
@@ -1313,8 +1313,8 @@
       fontWeight: 700,
       fontSize: 150,
       letterSpacing: -0.05,
-      color: '#191714',
-      accentColor: '#553B2E',
+      color: '#F5F1E9',
+      accentColor: '#C9A477',
       reveal: 'letter',
       dashLength: 4,
       dashGap: 2,
