@@ -2204,3 +2204,548 @@ textarea {
   border-radius: var(--radius-card);
   font-size: 14px;
 }
+
+/* ==========================================================================
+   React Bits <GlassSurface /> Component + 3x Optical Lens Watch Showcase
+   ========================================================================== */
+
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-surface__filter {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.glass-surface__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.glass-surface--svg {
+  background: hsl(0 0% 0% / var(--glass-frost, 0.08));
+  -webkit-backdrop-filter: var(--filter-id, url(#glass-filter-chronodock)) saturate(var(--glass-saturation, 1.15));
+  backdrop-filter: var(--filter-id, url(#glass-filter-chronodock)) saturate(var(--glass-saturation, 1.15));
+  box-shadow:
+    0 0 2px 1px color-mix(in oklch, white, transparent 62%) inset,
+    0 0 14px 4px color-mix(in oklch, white, transparent 82%) inset,
+    0 0 42px 8px rgba(201, 164, 119, 0.12) inset,
+    0px 12px 36px rgba(0, 0, 0, 0.65),
+    0px 24px 72px rgba(0, 0, 0, 0.85);
+}
+
+.glass-surface--webgl {
+  box-shadow:
+    0px 12px 36px rgba(0, 0, 0, 0.65),
+    0px 24px 72px rgba(0, 0, 0, 0.85);
+}
+
+.glass-surface__canvas,
+.glass-surface__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glass-surface__frame {
+  background: hsl(0 0% 100% / 0.02);
+  box-shadow:
+    0 0 2px 1.5px rgba(255, 255, 255, 0.34) inset,
+    0 0 16px 5px rgba(255, 255, 255, 0.14) inset,
+    0px 8px 28px rgba(0, 0, 0, 0.35) inset;
+}
+
+.glass-surface--fallback {
+  background: hsl(0 0% 100% / calc(0.04 + var(--glass-frost, 0.08) * 0.3));
+  -webkit-backdrop-filter: blur(12px) saturate(calc(var(--glass-saturation, 1) * 1.4)) brightness(1.04);
+  backdrop-filter: blur(12px) saturate(calc(var(--glass-saturation, 1) * 1.4)) brightness(1.04);
+  box-shadow:
+    inset 0 1px 0 0 hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0 hsl(0 0% 100% / 0.1),
+    0 0 2px 1px color-mix(in oklch, white, transparent 68%) inset,
+    0 0 14px 4px color-mix(in oklch, white, transparent 86%) inset,
+    0px 12px 36px rgba(0, 0, 0, 0.65);
+}
+
+.glass-surface__sheen,
+.glass-surface__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.glass-surface__sheen {
+  background: radial-gradient(
+      circle at 28% 22%,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.06) 24%,
+      transparent 52%
+    ),
+    linear-gradient(
+      135deg,
+      hsl(0 0% 100% / 0.18) 0%,
+      transparent 42%,
+      transparent 64%,
+      hsl(36 42% 72% / 0.12) 100%
+    );
+}
+
+.glass-surface__rim {
+  padding: 2.5px;
+  background: linear-gradient(
+    150deg,
+    hsl(0 0% 100% / 0.52),
+    hsl(35 45% 75% / 0.14) 45%,
+    hsl(0 0% 100% / 0.06) 60%,
+    hsl(35 45% 75% / 0.36)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+.glass-surface:focus-visible {
+  outline: 2px solid var(--cd-sand);
+  outline-offset: 4px;
+}
+
+/* Section 2: Pure Black Optical Lens Showcase */
+.lens-showcase-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #F5F1E9;
+  color-scheme: dark;
+  border-bottom: 1px solid #1C1814;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  padding: 28px 24px 32px;
+}
+
+.lens-showcase-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Top HUD bar */
+.lens-top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 5;
+}
+
+.lens-watch-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-spec);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A89E90;
+  background: rgba(18, 16, 14, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+
+.lens-meta-index {
+  color: var(--cd-sand);
+  font-weight: 500;
+}
+
+.lens-meta-brand {
+  color: #F5F1E9;
+  font-weight: 600;
+}
+
+.lens-meta-model {
+  color: #8E8477;
+}
+
+/* With / Without Lens toggle */
+.lens-mode-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(18, 16, 14, 0.9);
+  border: 1px solid rgba(201, 164, 119, 0.28);
+  border-radius: 999px;
+}
+
+.lens-toggle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #A89E90;
+  font-family: var(--font-spec);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lens-toggle-pill:hover {
+  color: #F5F1E9;
+}
+
+.lens-toggle-pill.is-active {
+  background: rgba(201, 164, 119, 0.18);
+  border-color: rgba(201, 164, 119, 0.55);
+  color: #F5F1E9;
+}
+
+.lens-toggle-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--cd-sand);
+  box-shadow: 0 0 8px rgba(217, 184, 140, 0.85);
+}
+
+/* Center Stage: Pure Black except where the watch sits under the lens */
+.lens-center-stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.lens-center-spotlight {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(245, 241, 233, 0.18) 0%,
+    rgba(201, 164, 119, 0.08) 38%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease;
+}
+
+.lens-showcase-section.is-lens-off .lens-center-spotlight {
+  transform: scale(0.55);
+  opacity: 0.85;
+}
+
+/* 1x Regular Size Watch (168px x 202px) */
+.lens-watch-1x-viewport {
+  position: relative;
+  width: 168px;
+  height: 202px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition:
+    opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.24;
+  filter: blur(1.5px) brightness(0.7);
+}
+
+.lens-showcase-section.is-lens-off .lens-watch-1x-viewport {
+  opacity: 1;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.9));
+}
+
+.lens-watch-1x-img {
+  width: 168px;
+  height: 202px;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition:
+    opacity 0.28s ease,
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* GlassSurface 3x Magnifying Lens Dome */
+.lens-glass-dome {
+  position: absolute;
+  width: 444px;
+  height: 444px;
+  border-radius: 222px;
+  z-index: 3;
+  cursor: grab;
+  --glass-frost: 0.08;
+  --glass-saturation: 1.16;
+  --filter-id: url(#glass-filter-chronodock);
+}
+
+.lens-glass-dome:active {
+  cursor: grabbing;
+}
+
+.lens-showcase-section.is-lens-off .lens-glass-dome {
+  opacity: 0;
+  transform: scale(0.84);
+  pointer-events: none;
+}
+
+/* 3x Magnified Watch inside the GlassSurface Dome (168px * 3 = 504px, 202px * 3 = 606px) */
+.lens-watch-3x-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(34, 29, 24, 0.72) 0%,
+    rgba(14, 12, 10, 0.92) 58%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  filter: url(#glass-filter-chronodock);
+}
+
+.lens-watch-3x-img {
+  width: 504px;
+  height: 606px;
+  max-width: none;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.85)) contrast(1.04) saturate(1.06);
+  transition:
+    opacity 0.28s ease,
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.lens-watch-1x-img.is-switching,
+.lens-watch-3x-img.is-switching {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.lens-optical-badge {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(10, 9, 8, 0.76);
+  border: 1px solid rgba(201, 164, 119, 0.35);
+  color: var(--cd-sand);
+  font-family: var(--font-spec);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Bottom Pill-Shaped Brand Logo Navigation */
+.lens-bottom-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.brand-pill-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: rgba(17, 15, 13, 0.92);
+  border: 1px solid rgba(201, 164, 119, 0.26);
+  border-radius: 999px;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  max-width: 100%;
+}
+
+.brand-pill-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.brand-pill-list::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-pill-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #8E8477;
+  cursor: pointer;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.brand-pill-item:hover {
+  color: #F5F1E9;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.brand-pill-item.is-active {
+  background: rgba(201, 164, 119, 0.16);
+  border-color: rgba(201, 164, 119, 0.55);
+  color: #F5F1E9;
+  box-shadow: 0 0 18px rgba(201, 164, 119, 0.14) inset;
+}
+
+.brand-logo-svg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.brand-pill-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #A89E90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.brand-pill-arrow:hover {
+  color: #F5F1E9;
+  border-color: rgba(201, 164, 119, 0.5);
+  background: rgba(201, 164, 119, 0.12);
+}
+
+@media (max-width: 768px) {
+  .lens-showcase-section {
+    padding: 20px 16px 24px;
+    min-height: 92vh;
+  }
+
+  .lens-top-bar {
+    justify-content: center;
+  }
+
+  .lens-meta-model {
+    display: none;
+  }
+
+  .lens-center-stage {
+    min-height: 380px;
+  }
+
+  .lens-watch-1x-viewport,
+  .lens-watch-1x-img {
+    width: 124px;
+    height: 149px;
+  }
+
+  .lens-glass-dome {
+    width: min(336px, 86vw);
+    height: min(336px, 86vw);
+    border-radius: 999px;
+  }
+
+  .lens-watch-3x-img {
+    width: 372px;
+    height: 447px;
+  }
+
+  .brand-pill-item {
+    height: 38px;
+    padding: 0 12px;
+  }
+
+  .brand-logo-svg {
+    height: 20px;
+  }
+}
+

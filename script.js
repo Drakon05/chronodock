@@ -1321,5 +1321,303 @@
       specks: 15,
     }
   );
+
+  /* ==========================================================================
+     10. React Bits <GlassSurface /> 3x Optical Lens & Watch Brand Carousel
+     ========================================================================== */
+
+  const WATCH_SHOWCASE_ITEMS = [
+    {
+      brand: 'CASIO G-SHOCK',
+      model: 'GA-2100 Octagonal Series',
+      src: 'watches/casiok.webp',
+      alt: 'Casio G-Shock GA-2100 octagonal analog-digital watch',
+    },
+    {
+      brand: 'FOSSIL',
+      model: 'The Minimalist Three-Hand',
+      src: 'watches/fossil.png',
+      alt: 'Fossil Minimalist blue dial watch with brown leather strap',
+    },
+    {
+      brand: 'TISSOT 1853',
+      model: 'Classic Dream Swiss Automatic',
+      src: 'watches/tissot.png',
+      alt: 'Tissot 1853 rose gold and black dial Swiss automatic watch',
+    },
+    {
+      brand: 'DIESEL',
+      model: 'Mega Chief 10BAR Chronograph',
+      src: 'watches/diesel.png',
+      alt: 'Diesel Mega Chief 10BAR oversized chronograph watch',
+    },
+    {
+      brand: 'OMEGA × SWATCH',
+      model: 'Speedmaster MoonSwatch Gold',
+      src: 'watches/omega-swatch.png',
+      alt: 'Omega x Swatch Speedmaster MoonSwatch Mission to Moonshine Gold',
+    },
+  ];
+
+  function initGlassSurfaceShowcase() {
+    const section = document.getElementById('lens-showcase');
+    const lensContainer = document.getElementById('glass-surface-lens');
+    const feImage = document.getElementById('glass-fe-image');
+    const redChannel = document.getElementById('glass-red-channel');
+    const greenChannel = document.getElementById('glass-green-channel');
+    const blueChannel = document.getElementById('glass-blue-channel');
+    const gaussianBlur = document.getElementById('glass-gaussian-blur');
+    const watch1xImg = document.getElementById('lens-watch-1x-img');
+    const watch3xImg = document.getElementById('lens-watch-3x-img');
+    const watch1xViewport = document.getElementById('lens-watch-1x-viewport');
+    const metaIndex = document.getElementById('lens-watch-index');
+    const metaBrand = document.getElementById('lens-watch-brand');
+    const metaModel = document.getElementById('lens-watch-model');
+    const lensOnBtn = document.getElementById('lens-on-btn');
+    const lensOffBtn = document.getElementById('lens-off-btn');
+    const prevBtn = document.getElementById('lens-prev-btn');
+    const nextBtn = document.getElementById('lens-next-btn');
+    const brandButtons = document.querySelectorAll('.brand-pill-item[data-watch-index]');
+
+    if (!section || !lensContainer || !watch1xImg || !watch3xImg) return;
+
+    // Preload all watch images for instant carousel transitions
+    WATCH_SHOWCASE_ITEMS.forEach((item) => {
+      const preload = new Image();
+      preload.src = item.src;
+    });
+
+    // React Bits <GlassSurface /> props configuration
+    const glassConfig = {
+      borderRadius: 222,
+      borderWidth: 0.11,
+      brightness: 50,
+      opacity: 0.93,
+      blur: 11,
+      displace: 0.5,
+      backgroundOpacity: 0.08,
+      saturation: 1.16,
+      distortionScale: -240,
+      redOffset: 0,
+      greenOffset: 10,
+      blueOffset: 20,
+      xChannel: 'R',
+      yChannel: 'G',
+      mixBlendMode: 'difference',
+    };
+
+    const generateDisplacementMap = () => {
+      const rect = lensContainer.getBoundingClientRect();
+      const actualWidth = Math.max(1, Math.round(rect.width || 444));
+      const actualHeight = Math.max(1, Math.round(rect.height || 444));
+      const radius = Math.round(Math.min(actualWidth, actualHeight) / 2);
+      const edgeSize = Math.min(actualWidth, actualHeight) * (glassConfig.borderWidth * 0.5);
+
+      const svgContent = `
+        <svg width="${actualWidth}" height="${actualHeight}" viewBox="0 0 ${actualWidth} ${actualHeight}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="red-grad-cd" x1="100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#0000"/>
+              <stop offset="100%" stop-color="red"/>
+            </linearGradient>
+            <linearGradient id="blue-grad-cd" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0000"/>
+              <stop offset="100%" stop-color="blue"/>
+            </linearGradient>
+            <filter id="soft-cd" filterUnits="userSpaceOnUse" x="0" y="0" width="${actualWidth}" height="${actualHeight}" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="${glassConfig.blur}" />
+            </filter>
+          </defs>
+          <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" fill="black"></rect>
+          <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" rx="${radius}" fill="url(#red-grad-cd)" />
+          <rect x="0" y="0" width="${actualWidth}" height="${actualHeight}" rx="${radius}" fill="url(#blue-grad-cd)" style="mix-blend-mode: ${glassConfig.mixBlendMode}" />
+          <rect x="${edgeSize}" y="${edgeSize}" width="${Math.max(1, actualWidth - edgeSize * 2)}" height="${Math.max(1, actualHeight - edgeSize * 2)}" rx="${Math.max(1, radius - edgeSize)}" fill="hsl(0 0% ${glassConfig.brightness}% / ${glassConfig.opacity})" filter="url(#soft-cd)" />
+        </svg>
+      `;
+
+      return `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
+    };
+
+    const updateDisplacementMap = () => {
+      const mapUrl = generateDisplacementMap();
+      if (feImage) {
+        feImage.setAttribute('href', mapUrl);
+        feImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', mapUrl);
+      }
+      [
+        { node: redChannel, offset: glassConfig.redOffset },
+        { node: greenChannel, offset: glassConfig.greenOffset },
+        { node: blueChannel, offset: glassConfig.blueOffset },
+      ].forEach(({ node, offset }) => {
+        if (node) {
+          node.setAttribute('scale', String(glassConfig.distortionScale + offset));
+          node.setAttribute('xChannelSelector', glassConfig.xChannel);
+          node.setAttribute('yChannelSelector', glassConfig.yChannel);
+        }
+      });
+      if (gaussianBlur) {
+        gaussianBlur.setAttribute('stdDeviation', String(glassConfig.displace));
+      }
+    };
+
+    updateDisplacementMap();
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(() => {
+        updateDisplacementMap();
+      });
+      ro.observe(lensContainer);
+    } else {
+      window.addEventListener('resize', updateDisplacementMap);
+    }
+
+    // Subtle interactive pointer pan inside the 3x GlassSurface dome
+    lensContainer.addEventListener('pointermove', (e) => {
+      if (section.classList.contains('is-lens-off')) return;
+      const rect = lensContainer.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      const panX = Math.max(-1, Math.min(1, nx)) * -28;
+      const panY = Math.max(-1, Math.min(1, ny)) * -36;
+      watch3xImg.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0)`;
+    });
+
+    lensContainer.addEventListener('pointerleave', () => {
+      watch3xImg.style.transform = 'translate3d(0, 0, 0)';
+    });
+
+    // With Lens (3x) / Without Lens (1x) Toggle
+    function setLensEnabled(enabled) {
+      section.classList.toggle('is-lens-off', !enabled);
+      if (lensOnBtn) {
+        lensOnBtn.classList.toggle('is-active', enabled);
+        lensOnBtn.setAttribute('aria-pressed', String(enabled));
+      }
+      if (lensOffBtn) {
+        lensOffBtn.classList.toggle('is-active', !enabled);
+        lensOffBtn.setAttribute('aria-pressed', String(!enabled));
+      }
+      if (!enabled) {
+        watch3xImg.style.transform = 'translate3d(0, 0, 0)';
+      }
+    }
+
+    if (lensOnBtn) {
+      lensOnBtn.addEventListener('click', () => setLensEnabled(true));
+    }
+    if (lensOffBtn) {
+      lensOffBtn.addEventListener('click', () => setLensEnabled(false));
+    }
+    if (watch1xViewport) {
+      watch1xViewport.addEventListener('click', () => {
+        if (section.classList.contains('is-lens-off')) {
+          setLensEnabled(true);
+        }
+      });
+    }
+
+    // Watch Carousel State & Transitions
+    let activeWatchIndex = 0;
+    let switchTimer = 0;
+    let autoCycleTimer = 0;
+    let isSectionVisible = false;
+    let isPointerInside = false;
+
+    function selectWatch(nextIndex, userInitiated = false) {
+      const count = WATCH_SHOWCASE_ITEMS.length;
+      const normalized = ((nextIndex % count) + count) % count;
+      if (normalized === activeWatchIndex && !userInitiated) return;
+      activeWatchIndex = normalized;
+      const item = WATCH_SHOWCASE_ITEMS[activeWatchIndex];
+
+      // Update top HUD metadata
+      if (metaIndex) {
+        metaIndex.textContent = `0${activeWatchIndex + 1} / 0${count}`;
+      }
+      if (metaBrand) {
+        metaBrand.textContent = item.brand;
+      }
+      if (metaModel) {
+        metaModel.textContent = item.model;
+      }
+
+      // Update bottom brand logo pill nav active state
+      brandButtons.forEach((btn, idx) => {
+        const isActive = idx === activeWatchIndex;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', String(isActive));
+      });
+
+      // Smooth crossfade + scale transition on both 1x and 3x watch layers
+      watch1xImg.classList.add('is-switching');
+      watch3xImg.classList.add('is-switching');
+      clearTimeout(switchTimer);
+      switchTimer = window.setTimeout(() => {
+        watch1xImg.src = item.src;
+        watch1xImg.alt = `${item.alt} (1x regular size)`;
+        watch3xImg.src = item.src;
+        watch3xImg.alt = `${item.alt} (3x magnified under ChronoDock lens)`;
+        watch1xImg.classList.remove('is-switching');
+        watch3xImg.classList.remove('is-switching');
+      }, 150);
+
+      if (userInitiated) {
+        restartAutoCycle();
+      }
+    }
+
+    brandButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-watch-index') || '0', 10);
+        selectWatch(idx, true);
+      });
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        selectWatch(activeWatchIndex - 1, true);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        selectWatch(activeWatchIndex + 1, true);
+      });
+    }
+
+    // Auto-cycle watches behind the lens when visible and idle
+    function restartAutoCycle() {
+      clearInterval(autoCycleTimer);
+      autoCycleTimer = window.setInterval(() => {
+        if (isSectionVisible && !isPointerInside && !document.hidden) {
+          selectWatch(activeWatchIndex + 1, false);
+        }
+      }, 4200);
+    }
+
+    section.addEventListener('pointerenter', () => {
+      isPointerInside = true;
+    });
+
+    section.addEventListener('pointerleave', () => {
+      isPointerInside = false;
+    });
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      const io = new IntersectionObserver(
+        (entries) => {
+          isSectionVisible = entries.some((entry) => entry.isIntersecting);
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(section);
+    } else {
+      isSectionVisible = true;
+    }
+
+    restartAutoCycle();
+  }
+
+  initGlassSurfaceShowcase();
 })();
 
