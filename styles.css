@@ -450,10 +450,29 @@ textarea {
   letter-spacing: -0.05em;
   color: var(--cd-ink);
   display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.site-footer .brand-mark {
+  width: 28px;
+  height: 28px;
+  filter: invert(1) brightness(0.95);
+}
+
+.brand-wordmark {
+  display: inline-flex;
   align-items: baseline;
 }
 
-.brand-logo span {
+.brand-logo span span {
   font-weight: 400;
   color: var(--cd-walnut);
 }
