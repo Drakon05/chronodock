@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChronoDock — Designed to Hold. Built to Showcase.</title>
+  <meta name="description" content="A compact, single-watch dock that keeps your everyday timepiece close, protected and on display.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Top Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand-logo" aria-label="ChronoDock home">
+        chrono<span>dock</span><i class="brand-dot" aria-hidden="true"></i>
+      </a>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#collection">Collection</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#grand-edition">Grand Edition</a></li>
+          <li><a href="#our-approach">Studio</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="cart-trigger" id="open-cart-btn" aria-haspopup="dialog" aria-controls="reservation-dialog">
+          <span>Reserve</span>
+          <span class="cart-count" id="cart-count-badge">1</span>
+        </button>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+            <path d="M0 1H18M0 7H18M0 13H18" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. HERO — THE OBJECT -->
+    <section id="top" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="eyebrow">Designed to Hold. Built to Showcase.</span>
+            <h1 class="display-hero">Give your everyday watch a place of its <em>own.</em></h1>
+            <p class="lead">
+              A compact dock that keeps your watch close, protected and on display.
+            </p>
+            <div class="btn-group">
+              <a href="#collection" class="btn btn-primary">
+                Explore the collection <span class="btn-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a href="#how-it-works" class="btn btn-secondary">
+                See how it works
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-stage">
+            <div class="hero-image-frame">
+              <img
+                id="hero-stage-img"
+                src="images/58.png"
+                alt="ChronoDock Premium in natural walnut finish on a wooden desk"
+                width="1323"
+                height="1189"
+                fetchpriority="high"
+              >
+            </div>
+            <div class="hero-stage-bar">
+              <span class="stage-caption" id="hero-stage-caption">01 / WALNUT DESK</span>
+              <div class="stage-switcher" role="group" aria-label="Switch hero product view">
+                <button type="button" class="stage-btn" data-hero-view="walnut" aria-pressed="true">01 Desk</button>
+                <button type="button" class="stage-btn" data-hero-view="bedside" aria-pressed="false">02 Bedside</button>
+                <button type="button" class="stage-btn" data-hero-view="cutaway" aria-pressed="false">03 Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DESIGN PROMISE — HOLD / ACCESS / DISPLAY -->
+    <section class="section" id="design-promise">
+      <div class="container">
+        <div class="section-header-row" style="margin-bottom: 48px;">
+          <div>
+            <span class="eyebrow">01 / Purpose</span>
+            <h2 class="display-section" style="margin-bottom: 12px;">Useful by design. Considered in every <em>detail.</em></h2>
+            <p class="lead">
+              A dedicated place for the watch you reach for every morning.
+            </p>
+          </div>
+        </div>
+
+        <div class="pillars-grid" style="margin-top: 0;">
+          <article class="pillar-card">
+            <span class="pillar-num">01 — HOLD</span>
+            <div class="pillar-visual">
+              <img
+                src="images/20.png"
+                alt="Side view of ChronoDock holding a watch on its internal cuff"
+                width="717"
+                height="1076"
+                loading="lazy"
+                class="contain-img"
+              >
+            </div>
+            <h3>Natural posture</h3>
+            <p>Supports straps and bracelets in their natural curve without scratching the clasp.</p>
+          </article>
+
+          <article class="pillar-card">
+            <span class="pillar-num">02 — ACCESS</span>
+            <div class="pillar-visual">
+              <img
+                src="images/58.png"
+                alt="ChronoDock Walnut on a desk beside a notebook"
+                width="1323"
+                height="1189"
+                loading="lazy"
+              >
+            </div>
+            <h3>Effortless reach</h3>
+            <p>No bulky lids or boxes to unlatch. Set it down and pick it up in one motion.</p>
+          </article>
+
+          <article class="pillar-card">
+            <span class="pillar-num">03 — DISPLAY</span>
+            <div class="pillar-visual">
+              <img
+                src="images/0.png"
+                alt="ChronoDock on a bedside table framing the watch dial"
+                width="1024"
+                height="1024"
+                loading="lazy"
+              >
+            </div>
+            <h3>Part of the room</h3>
+            <p>Frames the dial like a miniature desk clock when it is not on your wrist.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COLLECTION & INTERACTIVE INSPECTOR -->
+    <section class="section section-bone" id="collection">
+      <div class="container">
+        <div class="section-header-row">
+          <div>
+            <span class="eyebrow">02 / The Collection</span>
+            <h2 class="display-section" style="margin-bottom: 8px;">Choose your finish.</h2>
+          </div>
+          <span class="mono-spec">BATCH 01 · RESERVATIONS OPEN</span>
+        </div>
+
+        <!-- Collection Tier Cards -->
+        <div class="collection-cards">
+          <!-- Card 1: Standard -->
+          <article class="product-card" data-tier="standard" id="card-standard">
+            <div class="product-card-media">
+              <span class="tier-tag">01 / Standard</span>
+              <img
+                src="images/41.png"
+                alt="ChronoDock Standard in matte charcoal"
+                width="795"
+                height="713"
+                loading="lazy"
+              >
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-header">
+                <h3 class="product-card-title">Standard</h3>
+                <span class="product-card-price">₹1,999</span>
+              </div>
+              <p class="product-card-tagline">The everyday essential in matte resin.</p>
+              <div class="product-card-actions" style="margin-top: auto;">
+                <button type="button" class="btn btn-primary reserve-direct-btn" data-add-tier="standard">
+                  Reserve
+                </button>
+                <button type="button" class="btn btn-secondary inspect-tier-btn" data-select-tier="standard">
+                  Inspect
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Premium -->
+          <article class="product-card is-selected" data-tier="premium" id="card-premium">
+            <div class="product-card-media">
+              <span class="tier-tag">02 / Premium</span>
+              <img
+                src="images/40.png"
+                alt="ChronoDock Premium in natural walnut"
+                width="794"
+                height="714"
+                loading="lazy"
+              >
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-header">
+                <h3 class="product-card-title">Premium</h3>
+                <span class="product-card-price">₹4,999</span>
+              </div>
+              <p class="product-card-tagline">Hand-finished walnut with brass accents.</p>
+              <div class="product-card-actions" style="margin-top: auto;">
+                <button type="button" class="btn btn-primary reserve-direct-btn" data-add-tier="premium">
+                  Reserve
+                </button>
+                <button type="button" class="btn btn-secondary inspect-tier-btn" data-select-tier="premium">
+                  Inspect
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Grand Edition -->
+          <article class="product-card" data-tier="grand" id="card-grand">
+            <div class="product-card-media">
+              <span class="tier-tag">03 / Grand Edition</span>
+              <img
+                src="images/50.png"
+                alt="ChronoDock Grand Edition periscope showcase"
+                width="1195"
+                height="1315"
+                loading="lazy"
+              >
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-header">
+                <h3 class="product-card-title">Grand Edition</h3>
+                <span class="product-card-price">₹12,000</span>
+              </div>
+              <p class="product-card-tagline">A periscope statement piece for collectors.</p>
+              <div class="product-card-actions" style="margin-top: auto;">
+                <button type="button" class="btn btn-primary reserve-direct-btn" data-add-tier="grand">
+                  Reserve
+                </button>
+                <button type="button" class="btn btn-secondary inspect-tier-btn" data-select-tier="grand">
+                  Inspect
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Interactive Studio Inspector -->
+        <div class="studio-configurator" id="studio-configurator" aria-label="Interactive edition configurator" style="margin-bottom: 0;">
+          <div class="config-gallery" id="config-gallery-stage" style="background-color: var(--cd-ivory);">
+            <div class="config-gallery-top">
+              <span id="config-sku-code">02 / PREMIUM</span>
+              <span id="config-view-label">STUDIO VIEW</span>
+            </div>
+            <div class="config-main-image-wrap">
+              <img
+                id="config-main-img"
+                src="images/40.png"
+                alt="ChronoDock Premium Edition in Natural Walnut"
+                width="794"
+                height="714"
+              >
+            </div>
+            <div class="config-thumbs" id="config-thumbs" role="group" aria-label="Select product angle"></div>
+          </div>
+
+          <div class="config-panel">
+            <div>
+              <span class="eyebrow">Studio Inspector</span>
+              <h3 class="h2-title" id="config-title" style="margin-top:8px;">ChronoDock Premium</h3>
+              <p class="body-copy" id="config-desc" style="margin:0;">
+                CNC-finished walnut body with a 65 mm optical chamber and warm grazing light.
+              </p>
+            </div>
+
+            <div class="config-tier-tabs" role="tablist" aria-label="Choose ChronoDock edition">
+              <button type="button" role="tab" class="tier-tab" data-config-tier="standard" aria-selected="false">
+                <span>Standard</span>
+                <small>₹1,999</small>
+              </button>
+              <button type="button" role="tab" class="tier-tab" data-config-tier="premium" aria-selected="true">
+                <span>Premium</span>
+                <small>₹4,999</small>
+              </button>
+              <button type="button" role="tab" class="tier-tab" data-config-tier="grand" aria-selected="false">
+                <span>Grand</span>
+                <small>₹12,000</small>
+              </button>
+            </div>
+
+            <div class="finish-selector">
+              <span class="finish-selector-label" id="finish-label">Finish: Natural Walnut</span>
+              <div class="finish-options" id="finish-options-container" role="radiogroup" aria-labelledby="finish-label"></div>
+            </div>
+
+            <dl class="config-spec-list">
+              <div>
+                <dt>Material</dt>
+                <dd id="spec-body">CNC Walnut &amp; Brass</dd>
+              </div>
+              <div>
+                <dt>Optics</dt>
+                <dd id="spec-optics">65 mm 3× Convex Lens</dd>
+              </div>
+              <div>
+                <dt>Lighting</dt>
+                <dd id="spec-light">Warm Cordless LED</dd>
+              </div>
+              <div>
+                <dt>Base</dt>
+                <dd id="spec-support">Soft Cuff + Silicone Feet</dd>
+              </div>
+            </dl>
+
+            <div class="config-buy-row">
+              <div class="config-price-block">
+                <span class="price-main" id="config-price">₹4,999</span>
+                <span class="price-note">Ships in rigid foam-lined box</span>
+              </div>
+              <button type="button" class="btn btn-primary" id="config-add-btn">
+                Add to Reservation <span class="btn-arrow" aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS — FRONT & SIDE PROFILE -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="optics-grid">
+          <div>
+            <span class="eyebrow">03 / How It Works</span>
+            <h2 class="display-section">Built around a 65 mm optical chamber.</h2>
+            <p class="lead">
+              Three quiet details turn a wristwatch into a desk timepiece.
+            </p>
+
+            <div class="optics-steps">
+              <div class="optics-step">
+                <span class="optics-step-num">01</span>
+                <div>
+                  <h3>Contoured rear cuff</h3>
+                  <p>Holds leather straps and metal bracelets in their natural loop.</p>
+                </div>
+              </div>
+
+              <div class="optics-step">
+                <span class="optics-step-num">02</span>
+                <div>
+                  <h3>65 mm focal lens</h3>
+                  <p>Frames and magnifies the dial up to 3× for across-the-room reading.</p>
+                </div>
+              </div>
+
+              <div class="optics-step">
+                <span class="optics-step-num">03</span>
+                <div>
+                  <h3>Warm internal LED</h3>
+                  <p>Cordless grazing illumination activated by a recessed side switch.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Angle Viewer (Front / Side) -->
+          <div class="optical-simulator" aria-label="Product angle preview">
+            <div class="sim-header">
+              <span class="mono-spec">FORM STUDY</span>
+              <div class="sim-controls" role="group" aria-label="Select product view angle">
+                <button type="button" class="sim-toggle" data-sim-angle="front" aria-pressed="true">
+                  01 Front View
+                </button>
+                <button type="button" class="sim-toggle" data-sim-angle="side" aria-pressed="false">
+                  02 Side View
+                </button>
+              </div>
+            </div>
+
+            <div class="sim-viewport" id="sim-viewport">
+              <img
+                id="sim-img"
+                src="images/1.png"
+                alt="Front view of ChronoDock framing the chronograph watch face"
+                width="869"
+                height="1158"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="sim-readout">
+              <span id="sim-status-focal">65 MM CHAMBER</span>
+              <span id="sim-status-mode">01 / FRONT APERTURE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CHRONODOCK GRAND EDITION — DARK GALLERY FEATURE -->
+    <section class="section section-dark" id="grand-edition">
+      <div class="container">
+        <div class="grand-grid">
+          <div class="grand-visual-card">
+            <img
+              src="images/50.png"
+              alt="ChronoDock Grand Edition periscope system"
+              width="1195"
+              height="1315"
+              loading="lazy"
+            >
+          </div>
+
+          <div>
+            <span class="eyebrow">04 / Collector’s Edition</span>
+            <h2 class="display-section">ChronoDock Grand.<br><em>Where time takes the stage.</em></h2>
+            <p class="lead">
+              An optical periscope system that projects your resting watch from a glass chamber to an eye-level convex display lens.
+            </p>
+
+            <ul class="periscope-list">
+              <li class="periscope-item">
+                <strong>01 / FACE-UP WATCH CUSHION</strong>
+                <p>Plush anti-scratch slot inside a dust-protected glass chamber.</p>
+              </li>
+              <li class="periscope-item">
+                <strong>02 / 45° PERISCOPE MIRRORS</strong>
+                <p>Precision top and bottom mirrors redirect the dial reflection upward.</p>
+              </li>
+              <li class="periscope-item">
+                <strong>03 / CONVEX STAGE LENS</strong>
+                <p>Enlarges the watch face at clock height above a weighted dark-wood base.</p>
+              </li>
+            </ul>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-light reserve-direct-btn" data-add-tier="grand">
+                Reserve Grand — ₹12,000 <span class="btn-arrow" aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. STUDIO & FOUNDERS -->
+    <section class="section section-bone" id="our-approach">
+      <div class="container">
+        <div class="story-grid">
+          <div>
+            <span class="eyebrow">05 / The Studio</span>
+            <h2 class="display-section">Designed at UID Gandhinagar.</h2>
+            <p class="lead">
+              Created by industrial designers <strong>Arjun Addanki</strong> and <strong>Manasi C Mohan</strong> to replace cluttered desk habits with a single, considered object.
+            </p>
+          </div>
+
+          <div class="founders-grid">
+            <article class="founder-card">
+              <div class="founder-photo">
+                <img
+                  src="images/arjun-portrait.png"
+                  alt="Arjun Addanki, Co-founder of ChronoDock"
+                  width="1070"
+                  height="1070"
+                  loading="lazy"
+                >
+              </div>
+              <div class="founder-info">
+                <h3>Arjun Addanki</h3>
+                <span class="founder-role">B.DESIGN · UID GANDHINAGAR</span>
+                <a href="mailto:talktoarjun05@gmail.com" class="founder-contact">talktoarjun05@gmail.com</a>
+              </div>
+            </article>
+
+            <article class="founder-card">
+              <div class="founder-photo">
+                <img
+                  src="images/manasi-portrait.png"
+                  alt="Manasi C Mohan, Co-founder of ChronoDock"
+                  width="430"
+                  height="430"
+                  loading="lazy"
+                >
+              </div>
+              <div class="founder-info">
+                <h3>Manasi C Mohan</h3>
+                <span class="founder-role">B.DESIGN · UID GANDHINAGAR</span>
+                <a href="mailto:manasimohan03@gmail.com" class="founder-contact">manasimohan03@gmail.com</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="faq-layout">
+          <div>
+            <span class="eyebrow">06 / Details</span>
+            <h2 class="display-section">Common questions.</h2>
+          </div>
+
+          <div class="accordion-group">
+            <details class="accordion-item" name="faq" open>
+              <summary>Which watch sizes fit ChronoDock?</summary>
+              <div class="accordion-content">
+                <p>Designed for 36–44 mm analog watches, chronographs and smartwatches on leather straps or metal bracelets.</p>
+              </div>
+            </details>
+
+            <details class="accordion-item" name="faq">
+              <summary>How is the internal light powered?</summary>
+              <div class="accordion-content">
+                <p>A self-contained replaceable battery powers the warm LED via the side switch—no desk cables needed.</p>
+              </div>
+            </details>
+
+            <details class="accordion-item" name="faq">
+              <summary>What is included in the box?</summary>
+              <div class="accordion-content">
+                <p>Your ChronoDock unit, pre-installed battery and care guide inside a foam-lined rigid box.</p>
+              </div>
+            </details>
+
+            <details class="accordion-item" name="faq">
+              <summary>How do Batch 01 reservations work?</summary>
+              <div class="accordion-content">
+                <p>Reserving holds your unit from our initial 25-unit batch with zero upfront payment until dispatch.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="padding-top: 0;">
+        <div>
+          <a href="#top" class="brand-logo" style="color: var(--cd-ivory); font-size: 20px;">chrono<span style="color: var(--cd-sand);">dock</span></a>
+          <span style="margin-left: 16px;">Designed to Hold. Built to Showcase.</span>
+        </div>
+        <div>
+          <a href="mailto:talktoarjun05@gmail.com" style="margin-right: 16px;">talktoarjun05@gmail.com</a>
+          <a href="mailto:manasimohan03@gmail.com">manasimohan03@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Native Modal Dialog for Batch 01 Reservation / Cart -->
+  <dialog class="reservation-dialog" id="reservation-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-layout">
+      <div class="dialog-header">
+        <div>
+          <span class="mono-spec" style="color:var(--cd-walnut); display:block;">BATCH 01</span>
+          <h2 id="dialog-title">Your Reservation</h2>
+        </div>
+        <button type="button" class="dialog-close" id="close-dialog-btn" aria-label="Close reservation panel">✕</button>
+      </div>
+
+      <div class="dialog-body">
+        <ul class="cart-items-list" id="cart-items-list" aria-live="polite"></ul>
+
+        <form id="reservation-form" class="reservation-form">
+          <div class="form-field">
+            <label for="res-name">Full name</label>
+            <input type="text" id="res-name" name="name" required autocomplete="name" placeholder="Rahul Mehta">
+          </div>
+
+          <div class="form-field">
+            <label for="res-email">Email</label>
+            <input type="email" id="res-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@domain.com">
+          </div>
+
+          <div class="form-field">
+            <label for="res-phone">Phone</label>
+            <input type="tel" id="res-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210">
+          </div>
+        </form>
+
+        <div class="order-confirmation" id="order-confirmation" hidden>
+          <strong style="display:block; margin-bottom:4px; font-family:var(--font-spec); color:var(--cd-walnut);">
+            ✓ RESERVED
+          </strong>
+          <p style="margin:0;" id="order-confirmation-text"></p>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <div class="cart-total-row">
+          <span>Total</span>
+          <strong id="cart-total-amount">₹4,999</strong>
+        </div>
+        <button type="submit" form="reservation-form" class="btn btn-primary" id="submit-reservation-btn" style="width:100%;">
+          Confirm Reservation <span class="btn-arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
